@@ -1,19 +1,21 @@
 def word_count(file_name):
-    """
-    Takes file, prints out number of times you see the same words
-    """
+    """Takes file, prints out number of times you see the same words"""
+    
     # open file
     file_name_open = open(file_name)
     # create empty dictionary 
     word_count_dictionary = {}
-    # split the line, which returns a list of words
-    list_of_words = file_name_open.split(" ")
-# close file
 
-# store list of words in a variable
+    for line in file_name_open:
+        clean_line = line.rstrip().split()
+        for word in clean_line:
+            word_count_dictionary[word] = word_count_dictionary.get(word, 0) + 1
 
-# loop through list of words(use .get method)
+    # close file
+    file_name_open.close()
+    # print word_count_dictionary cleanly
+    for word, count in word_count_dictionary.iteritems():
+        print "{} {}".format(word, count)
 
-
-
-# print word count (maybe for loop needed?)
+print word_count("test.txt")
+print word_count("twain.txt")
